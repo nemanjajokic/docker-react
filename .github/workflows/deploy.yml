@@ -2,7 +2,7 @@ name: Deploy docker-react
 on:
   push:
     branches:
-      - main
+    - main
 
 jobs:
   build:
