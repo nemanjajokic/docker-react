@@ -12,9 +12,13 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
-    - name: Docker run tests
+    - name: Docker login
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Docker build tests
       run: docker build -t cygnetops/react-test -f Dockerfile.dev .
+
+    - name: Docker run tests
       run: docker run -e CI=true cygnetops/react-test npm test
 
     - name: Generate deployment package
